@@ -11,7 +11,7 @@ import (
 	"strings"
 )
 
-func ParseGlob(debug bool, md goldmark.Markdown, t *template.Template, glob string) (*template.Template, error) {
+func ParseGlob(md goldmark.Markdown, t *template.Template, glob string) (*template.Template, error) {
 	if md == nil {
 		return nil, fmt.Errorf("MD was nil")
 	}
@@ -31,7 +31,7 @@ func ParseGlob(debug bool, md goldmark.Markdown, t *template.Template, glob stri
 	return parseFiles(debug, md, t, "", readFileOS, filenames...)
 }
 
-func ParseString(debug bool, md goldmark.Markdown, t *template.Template, templateName string, markdown string) (*template.Template, error) {
+func ParseString(md goldmark.Markdown, t *template.Template, templateName string, markdown string) (*template.Template, error) {
 	if md == nil {
 		return nil, fmt.Errorf("MD was nil")
 	}
@@ -86,7 +86,7 @@ Markdown:
 	return t, nil
 }
 
-func Parse(debug bool, md goldmark.Markdown, t *template.Template, templateName string, file string) (*template.Template, error) {
+func Parse(md goldmark.Markdown, t *template.Template, templateName string, file string) (*template.Template, error) {
 	if md == nil {
 		return nil, fmt.Errorf("MD was nil")
 	}
@@ -99,7 +99,7 @@ func Parse(debug bool, md goldmark.Markdown, t *template.Template, templateName 
 
 // parseFiles is the helper for the method and function. If the argument
 // template is nil, it is created from the first file.
-func parseFiles(debug bool, md goldmark.Markdown, t *template.Template, forceTemplateName string, readFile func(string) (string, []byte, error), filenames ...string) (*template.Template, error) {
+func parseFiles(md goldmark.Markdown, t *template.Template, forceTemplateName string, readFile func(string) (string, []byte, error), filenames ...string) (*template.Template, error) {
 	if len(filenames) == 0 {
 		// Not really a problem, but be consistent.
 		return nil, fmt.Errorf("md/template: no files named in call to ParseFiles")
