@@ -28,7 +28,7 @@ func ParseGlob(md goldmark.Markdown, t *template.Template, glob string) (*templa
 		return nil, fmt.Errorf("md/template: pattern matches no files: %#q", glob)
 	}
 
-	return parseFiles(debug, md, t, "", readFileOS, filenames...)
+	return parseFiles(md, t, "", readFileOS, filenames...)
 }
 
 func ParseString(md goldmark.Markdown, t *template.Template, templateName string, markdown string) (*template.Template, error) {
@@ -94,7 +94,7 @@ func Parse(md goldmark.Markdown, t *template.Template, templateName string, file
 		return nil, fmt.Errorf("template.Template was nil")
 	}
 
-	return parseFiles(debug, md, t, templateName, readFileOS, file)
+	return parseFiles(md, t, templateName, readFileOS, file)
 }
 
 // parseFiles is the helper for the method and function. If the argument
